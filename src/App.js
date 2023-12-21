@@ -1,8 +1,17 @@
 import './App.css';
+import {BrowserRouter as Router, Routes, Route,} from "react-router-dom";
+import Main from "./components/Main";
+
 
 function App() {
   return (
-     <div></div>
+      // Routing
+      <Router>
+        <Routes>
+          // Main page routing
+          <Route path="" element={<Main />} />
+        </Routes>
+      </Router>
   );
 }
 
