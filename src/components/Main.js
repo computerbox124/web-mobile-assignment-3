@@ -17,16 +17,16 @@ function Main (){
             <section id="portfolio">
                 <h2>Portfolio</h2>
                 <div className="portfolio-item">
-                    <h3>Project 1</h3>
-                    <p>Description of Project 1.</p>
+                    <h3>Hey Hajiyevs Chat</h3>
+                    <p>URL: https://github.com/computerbox124/Hey-Hajiyevs</p>
                 </div>
                 <div className="portfolio-item">
-                    <h3>Project 2</h3>
-                    <p>Description of Project 2.</p>
+                    <h3>Web & Mobile course Assignment 1 - CV Page</h3>
+                    <p>URL: https://github.com/computerbox124/cv-page</p>
                 </div>
                 <div className="portfolio-item">
-                    <h3>Project 3</h3>
-                    <p>Description of Project 3.</p>
+                    <h3>Web & Mobile course Assignment 2</h3>
+                    <p>URL: https://github.com/computerbox124/web-mobile-assignment-2</p>
                 </div>
             </section>
 
