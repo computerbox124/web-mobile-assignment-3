@@ -1,7 +1,9 @@
+import Card from "./Card";
+
 function Learning (){
     return (
         <div>
-            Learning page
+           <Card img="https://codeany.org/media/pictures/article-covers/azeioi2023.jpg" title="I" text="hi"/>
         </div>
     );
 }
