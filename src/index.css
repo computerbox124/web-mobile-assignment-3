@@ -60,6 +60,7 @@ footer {
   padding: 10px;
   background-color: #333;
   color: #fff;
+  margin-top: auto;
 }
 
 @media (max-width: 600px) {
@@ -75,4 +76,18 @@ footer {
 
 .card {
   width: 18em;
+  flex-direction:column;
+
+
+}
+
+.card-footer {
+    margin-top: auto;
+}
+
+.flexWrapper {
+  display: flex;
+  min-height: 77vh;
+  flex-direction: column;
+  justify-content: space-between;
 }
