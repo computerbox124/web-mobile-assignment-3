@@ -19,7 +19,7 @@ function Card ({props}){
                     <div className="card-header" style={{color: "white", background: "green"}}>{props.status}</div>:
                 props.status === 'Want to Learn' ?
                     <div className="card-header" style={{color: "white", background: "red"}}>{props.status}</div>:
-                    <div className="card-header" style={{color: "white", background: "yellow"}}>{props.status}</div>
+                    <div className="card-header" style={{color: "white", background: "orange"}}>{props.status}</div>
 
             }
 
