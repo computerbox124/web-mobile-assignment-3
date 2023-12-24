@@ -26,6 +26,7 @@ function Card ({props}){
             <div className="card-body">
                     <p className="card-text">{props.content}</p>
                     {props.img !== "none" ? <img className="card-img" src={props.img} alt="Card image cap" /> : <div />}
+                    <p className="card-text">Answer: {props.answer}</p>
             </div>
 
             <div className="card-footer">
