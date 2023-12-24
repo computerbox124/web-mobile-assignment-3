@@ -19,7 +19,7 @@
 .env.production.local
 .env
 db.json
-/web-mobile-assignment-3-backend
+/web-mobile-assignment-3-backend/db.json
 
 npm-debug.log*
 yarn-debug.log*
