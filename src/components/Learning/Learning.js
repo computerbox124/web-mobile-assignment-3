@@ -1,6 +1,8 @@
 import Card from "./Card";
-import NewCard from "./NewCard";
+import CardDialogues from "./NewCard";
 import {useEffect, useState} from "react";
+import DeleteCard from "./DeleteCard";
+
 
 function Learning (){
     const [data, setData] = useState([]);
@@ -29,16 +31,21 @@ function Learning (){
 
     useEffect(() => {
         dataFetch(urlAPI);
-    }, []);
+    }, [urlAPI]);
 
     useEffect(() => {
         setRows(renderRows(data));
     }, [data]);
 
+    // Add Card Dialogue state
+    const [addCardState, setAddCardState] = useState(false);
+    const openAddModal = () => setAddCardState(true);
 
-    const [modalState, setModalState] = useState(false)
-    const openModal = () => setModalState(true);
+    // Delete Card Dialogue state
+    const [deleteCardState, setDeleteCardState] = useState(0);
 
+    // Edit Card Dialogue state
+    const [editCardState, setEditCardState] = useState(0);
 
 
 
@@ -48,7 +55,7 @@ function Learning (){
                 <div className="row mb-10 gy-10">
                     <div className="col">
                        <div style={{marginTop: "20px", marginBottom: "30px"}}>
-                           <button type="button" onClick={openModal} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCard">Add card</button>
+                           <button type="button" onClick={openAddModal} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCard">Add card</button>
                        </div>
                     </div>
                 </div>
@@ -56,13 +63,15 @@ function Learning (){
                     <div key={indexRow} className="row mb-4 gy-2">
                         {row.map(card => (
                             <div key={card.id} className="col">
-                             <Card props={{...card}} />
+                             <Card props={{...card}} setDeleteDialogue={setDeleteCardState}
+                                   setEditDialogue={setEditCardState} />
                             </div>
                         ))}
                     </div>
                 ))}
             </div>
-            <NewCard state={modalState} setState={setModalState} setData={setData} />
+            <CardDialogues state={addCardState} setState={setAddCardState} setData={setData} />
+            <DeleteCard state={deleteCardState} setState={setDeleteCardState} setData={setData} />
         </div>
 
     );

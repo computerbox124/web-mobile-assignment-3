@@ -1,3 +1,5 @@
+import {useEffect, useState} from "react";
+
 function getTime(time){
   const dateObj = new Date(time)
   const date = dateObj.getDate();
@@ -10,10 +12,27 @@ function getTime(time){
   return 'Created/Modified: ' + date + ' ' + months[month] + ' ' + hours + ':' + minutes + ':' + seconds;
 }
 
-function Card ({props}){
+function Card ({props, setDeleteDialogue, setEditDialogue}){
+    const buttonDeleteID = `delete_${props.id}`;
+
+    const [update, setUpdate] = useState(false);
+    const openDeleteModal = (e) =>{
+        const cardID = e.target.id.split('_')[1];
+        setDeleteDialogue(cardID);
+    }
+    const openEditModal = () => setEditDialogue(true);
+
+
+    const handleMouseEnter = () => {
+        setUpdate(true);
+    }
+
+    const handleMouseOut = () => {
+        setUpdate(false);
+    }
 
     return (
-        <div className="card h-100">
+        <div className="card h-100" onMouseOver={handleMouseEnter} onMouseOut={handleMouseOut}>
             {
                 props.status === "Learned" ?
                     <div className="card-header" style={{color: "white", background: "green"}}>{props.status}</div>:
@@ -33,6 +52,13 @@ function Card ({props}){
                 <p className="card-text">
                     {getTime(props.date)}
                 </p>
+                {
+                    update === true ?
+                       <div>
+                        <button className="btn btn-warning" onClick={openEditModal}>Edit</button>
+                        <button id={buttonDeleteID} className="btn btn-danger" onClick={openDeleteModal} style={{marginLeft: "10px"}}>Delete</button>
+                       </div> : null
+                }
             </div>
         </div>
     );
