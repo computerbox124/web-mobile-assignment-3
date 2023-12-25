@@ -12,15 +12,14 @@ function getTime(time){
   return 'Created/Modified: ' + date + ' ' + months[month] + ' ' + hours + ':' + minutes + ':' + seconds;
 }
 
-function Card ({props, setDeleteDialogue, setEditDialogue}){
-    const buttonDeleteID = `delete_${props.id}`;
-
+function Card ({props, setDeleteDialogue, setEditDialogue, setCurrentData, cardID}){
     const [update, setUpdate] = useState(false);
-    const openDeleteModal = (e) =>{
-        const cardID = e.target.id.split('_')[1];
-        setDeleteDialogue(cardID);
+    const openDeleteModal = () => setDeleteDialogue(cardID);
+
+    const openEditModal = () => {
+        setCurrentData(props);
+        setEditDialogue(cardID);
     }
-    const openEditModal = () => setEditDialogue(true);
 
 
     const handleMouseEnter = () => {
@@ -56,7 +55,7 @@ function Card ({props, setDeleteDialogue, setEditDialogue}){
                     update === true ?
                        <div>
                         <button className="btn btn-warning" onClick={openEditModal}>Edit</button>
-                        <button id={buttonDeleteID} className="btn btn-danger" onClick={openDeleteModal} style={{marginLeft: "10px"}}>Delete</button>
+                        <button className="btn btn-danger" onClick={openDeleteModal} style={{marginLeft: "10px"}}>Delete</button>
                        </div> : null
                 }
             </div>

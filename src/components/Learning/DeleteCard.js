@@ -28,8 +28,7 @@ function DeleteCard({state, setState, setData}) {
     }
 
 
-    return (
-        state &&
+    if(state)return (
         <div className="modal fade show" id="createCard" style={{display: "block"}}>
             <div className="modal-dialog">
                 <div className="modal-content">

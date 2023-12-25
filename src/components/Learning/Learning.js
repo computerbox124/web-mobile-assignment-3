@@ -1,5 +1,5 @@
 import Card from "./Card";
-import CardDialogues from "./NewCard";
+import CardDialogues from "./CardModal";
 import {useEffect, useState} from "react";
 import DeleteCard from "./DeleteCard";
 
@@ -37,16 +37,15 @@ function Learning (){
         setRows(renderRows(data));
     }, [data]);
 
-    // Add Card Dialogue state
-    const [addCardState, setAddCardState] = useState(false);
-    const openAddModal = () => setAddCardState(true);
+    // Modal Card Dialogue state (Add, Edit)
+    const [modalCardState, setModalCardState] = useState(0);
+    const openModal = () => setModalCardState(-1);
 
     // Delete Card Dialogue state
     const [deleteCardState, setDeleteCardState] = useState(0);
 
-    // Edit Card Dialogue state
-    const [editCardState, setEditCardState] = useState(0);
-
+    // State of Modal Card Dialogue during edit state
+    const [currentData, setCurrentData] = useState(null)
 
 
     return (
@@ -55,7 +54,7 @@ function Learning (){
                 <div className="row mb-10 gy-10">
                     <div className="col">
                        <div style={{marginTop: "20px", marginBottom: "30px"}}>
-                           <button type="button" onClick={openAddModal} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCard">Add card</button>
+                           <button type="button" onClick={openModal} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCard">Add card</button>
                        </div>
                     </div>
                 </div>
@@ -64,13 +63,16 @@ function Learning (){
                         {row.map(card => (
                             <div key={card.id} className="col">
                              <Card props={{...card}} setDeleteDialogue={setDeleteCardState}
-                                   setEditDialogue={setEditCardState} />
+                                   setEditDialogue={setModalCardState} cardID={card.id}
+                                   setCurrentData={setCurrentData}
+                             />
                             </div>
                         ))}
                     </div>
                 ))}
             </div>
-            <CardDialogues state={addCardState} setState={setAddCardState} setData={setData} />
+            <CardDialogues state={modalCardState} setState={setModalCardState} setData={setData}
+                           currentData={currentData} setCurrentData={setCurrentData}/>
             <DeleteCard state={deleteCardState} setState={setDeleteCardState} setData={setData} />
         </div>
 
