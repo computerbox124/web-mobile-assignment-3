@@ -37,7 +37,7 @@ function DeleteCard({state, setState, setData}) {
                         <button type="button"  onClick={closeState} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                       <h5>Are you that you want delete the card ?</h5>
+                       <h5>Are you sure that you want delete the card ?</h5>
 
                     </div>
 

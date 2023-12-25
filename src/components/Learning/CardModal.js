@@ -16,9 +16,11 @@ function CardModal({state, setState, currentData, setCurrentData, setData}){
         const title = titleRef.current.value;
         const content = contentRef.current.value;
         const answer = answerRef.current.value;
-        const imgURL = imgURLRef.current.value;
+        let imgURL = imgURLRef.current.value;
         const status = statusRef.current.value;
         const date = new Date().getTime();
+
+        if(imgURL.length === 0)imgURL = 'none';
 
         const sendData = {
             'title': title,
