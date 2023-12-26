@@ -1,15 +1,30 @@
 import Card from "./Card";
 import CardDialogues from "./CardModal";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import DeleteCard from "./DeleteCard";
 
 
 function Learning (){
-    const [data, setData] = useState([]);
-    const [rows, setRows] = useState([])
+    //Base URL API
     const urlAPI = process.env.REACT_APP_BACKEND_API + '/cards';
 
+    //UseRef for referencing the search value
+    const searchRef = useRef(null);
+
+    //Searching process
+    const search = () => {
+        const searchVal = searchRef.current.value;
+        const searchAPI = urlAPI + '?q=' + searchVal;
+        dataFetch(searchAPI);
+    }
+
+    // States of Cards (Data State and Row State)
+    const [data, setData] = useState([]);
+    const [rows, setRows] = useState([])
+
+
     const cardsRow = 4; // Count of cards in each row
+    // Rendering the rows
     const renderRows = (renderData) => {
         let rows = [];
         for (let i = 0; i < renderData.length; i += cardsRow) {
@@ -19,6 +34,7 @@ function Learning (){
 
     }
 
+    // Fetching the data (all cards)
     const dataFetch = async (urlAPI) => {
         try {
             const response = await fetch(urlAPI);
@@ -29,6 +45,7 @@ function Learning (){
         }
     };
 
+    // useEffect for ReRendering after states update
     useEffect(() => {
         dataFetch(urlAPI);
     }, [urlAPI]);
@@ -56,6 +73,9 @@ function Learning (){
                        <div style={{marginTop: "20px", marginBottom: "30px"}}>
                            <button type="button" onClick={openModal} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCard">Add card</button>
                        </div>
+                    </div>
+                    <div className="col">
+                        <input onChange={search} ref={searchRef} style={{marginTop: "20px", marginBottom: "30px"}} className="form-control" type="text" placeholder="Search" aria-label="Search" />
                     </div>
                 </div>
                 {rows.map((row, indexRow) => (
