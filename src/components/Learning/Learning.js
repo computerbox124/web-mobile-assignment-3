@@ -18,6 +18,19 @@ function Learning (){
         dataFetch(searchAPI);
     }
 
+    //UseRef for referencing the filter value
+    const statusRef = useRef(null);
+
+    //Filtering process
+    const filter = () => {
+        const filterVal = statusRef.current.value;
+        if(filterVal === 'All') dataFetch(urlAPI);
+        else {
+            const filterAPI = urlAPI + '?status=' + filterVal;
+            dataFetch(filterAPI);
+        }
+    }
+
     // States of Cards (Data State and Row State)
     const [data, setData] = useState([]);
     const [rows, setRows] = useState([])
@@ -76,6 +89,18 @@ function Learning (){
                     </div>
                     <div className="col">
                         <input onChange={search} ref={searchRef} style={{marginTop: "20px", marginBottom: "30px"}} className="form-control" type="text" placeholder="Search" aria-label="Search" />
+                    </div>
+                    <div className={"col"}>
+                        <select style={{marginTop: "20px", marginBottom: "30px"}}
+                                ref={statusRef}
+                                className="form-control" id="statuses"
+                                onChange={filter}
+                        >
+                            <option>All</option>
+                            <option>Noted</option>
+                            <option>Want to Learn</option>
+                            <option>Learned</option>
+                        </select>
                     </div>
                 </div>
                 {rows.map((row, indexRow) => (
